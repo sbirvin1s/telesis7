@@ -22,6 +22,10 @@ export default function App() {
     .catch(err => console.error(err))
   }
 
+  const handleUpdate = () => {
+    setSalesHistory([Math.floor(Math.random() * 1000)]);
+  }
+
   /*----- RENDER METHODS -----*/
   const renderTitle = () => {
     return <h1>Customer Rewards Program</h1>
@@ -32,6 +36,8 @@ export default function App() {
       <button onClick={handleImport}>Import Records</button>
     )
   }
+
+  const renderUpdate = () => <button onClick={handleUpdate}>Update Records</button>
 
   const renderCustomerInfo = () => {
     if (salesHistory && salesHistory.length > 0) {
@@ -67,7 +73,15 @@ export default function App() {
       <GlobalStyle />
         <Page>
           {renderTitle()}
-          {renderImport()}
+          <Row
+            style={{
+              width: '75%',
+              justifyContent: 'space-evenly',
+            }}
+            >
+            {renderImport()}
+            {renderUpdate()}
+          </Row>
           {renderCustomerInfo()}
         </Page>
     </>
