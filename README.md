@@ -19,6 +19,7 @@
 
  1. Fork and clone the repo
  1. Install Dependencies using either `npm install` or `yarn add`
+ 1. Create local `.env` file with `PORT` and `SERVER_PORT` variables set to the local ports you would like to run the client and server on
  1. Start the server using `npm run server:dev` or `yarn server:dev`
  1. Start the front end client using `npm run build` or `yarn build`
  1. Clicking the "Import Records" button will perform a pseudo async call to the API to retrieve the client's previous sales records and points from the database and, upon the completion of the API call, calculate the total number of points
