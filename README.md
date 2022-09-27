@@ -19,6 +19,6 @@
 
  1. Fork and clone the repo
  1. Install Dependencies using either `npm install` or `yarn add`
- 1. Start the server using `npm run start` or `yarn start`
- 1. Clicking the "Retrieve Records" button will perform a pseudo async call to the API to retrieve the client's previous sales records from the database and, upon the completion of the API call, calculate the accumulated number of points
- 1. Clicking the "Update Records" button will replace the current client's sales records with a new, randomly generated amount and will also recalculate the accumulated number of points
+ 1. Start the server using `npm run server:dev` or `yarn server:dev`
+ 1. Start the front end client using `npm run build` or `yarn build`
+ 1. Clicking the "Import Records" button will perform a pseudo async call to the API to retrieve the client's previous sales records and points from the database and, upon the completion of the API call, calculate the total number of points
