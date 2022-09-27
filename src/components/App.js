@@ -3,17 +3,14 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 /*========== INTERNAL MODULES ==========*/
-import { GlobalStyle, Page, Row } from '../stylesheets/styles';
+import { GlobalStyle, Page } from '../stylesheets/styles';
 import SalesHistory from './SalesHistory.jsx';
-import Points from './Points.jsx';
-
 
 /*========== EXPORTS ==========*/
 export default function App() {
 
   /*----- STATE HOOKS -----*/
   const [salesHistory, setSalesHistory] = useState();
-  /*----- LIFESTYLE MEHTODS -----*/
 
   /*----- EVENT HANDLERS -----*/
   const handleImport = () => {
@@ -22,37 +19,28 @@ export default function App() {
     .catch(err => console.error(err))
   }
 
-  const handleUpdate = () => {
-    setSalesHistory([Math.floor(Math.random() * 1000)]);
-  }
 
   /*----- RENDER METHODS -----*/
-  const renderTitle = () => {
-    return <h1>Customer Rewards Program</h1>
-  }
+  const renderTitle = () => <h1>Customer Rewards Program</h1>
+  const renderImport = () => <button onClick={handleImport}>Import Records</button>
 
-  const renderImport = () => {
-    return (
-      <button onClick={handleImport}>Import Records</button>
-    )
-  }
+  const renderTotalPoints = () => {
+    let totalPoints = 0
+    salesHistory.forEach(month => {
+      totalPoints = totalPoints + month.points
+    })
 
-  const renderUpdate = () => <button onClick={handleUpdate}>Update Records</button>
+    return <h3>Total Points: {totalPoints}</h3>
+  }
 
   const renderCustomerInfo = () => {
     if (salesHistory && salesHistory.length > 0) {
       return (
         <>
           <h2>Customer Information</h2>
-          <Row
-            style={{
-              maxWidth: '1200px',
-              width: '80vw',
-            }}
-            >
-            <SalesHistory salesData={salesHistory}/>
-            <Points salesData={salesHistory}/>
-          </Row>
+          <SalesHistory salesData={salesHistory} />
+          <br/>
+          {renderTotalPoints()}
         </>
       )
     } else {
@@ -73,15 +61,7 @@ export default function App() {
       <GlobalStyle />
         <Page>
           {renderTitle()}
-          <Row
-            style={{
-              width: '75%',
-              justifyContent: 'space-evenly',
-            }}
-            >
-            {renderImport()}
-            {renderUpdate()}
-          </Row>
+          {renderImport()}
           {renderCustomerInfo()}
         </Page>
     </>

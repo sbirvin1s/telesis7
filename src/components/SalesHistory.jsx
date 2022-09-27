@@ -2,7 +2,8 @@
 import React from 'react';
 
 /*========== INTERNAL MODULES ==========*/
-import { Column } from '../stylesheets/styles';
+import { Row } from '../stylesheets/styles';
+import SalesMonth from './SalesMonth.jsx';
 
 
 /*========== EXPORTS ==========*/
@@ -10,36 +11,18 @@ export default function SalesHistory({ salesData }) {
 
   /*----- RENDER METHODS -----*/
   const renderHistory = () => {
-    const history = salesData.map((sale, index) => {
-      return (
-        <p key={'salesData' + index}
-          style={{
-            margin: '0.25rem'
-          }}
-          >
-          {'$' + sale + '\n'}
-        </p>
-      )
-    });
-
-    return (
-      <Column
-        style={{
-          width: '40vw',
-          height: '50vh',
-          flexWrap: 'wrap',
-        }}
-        >
-        {history}
-      </Column>
-    )
+    return salesData.map(month => <SalesMonth key={month.name} month={month.name} sales={month.sales} points={month.points}/>)
   }
-
 
   /*----- RENDERER -----*/
   return (
-    <>
+    <Row
+      style={{
+        width: '80vw',
+        height: '80vh',
+      }}
+      >
       {renderHistory()}
-    </>
+    </Row>
   );
 }
